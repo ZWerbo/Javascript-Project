@@ -1,34 +1,4 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
-  @font-face {
-    font-family: 'slabsregular';
-    src: url('slabs-vmn07-webfont.woff2') format('woff2'),
-         url('slabs-vmn07-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 
-}
-  #gameCanvas{
-    box-shadow: 10px 10px 20px black;
-    background-color: green;
-}
-h1{
-    text-align: center;
-    font-family: slabsregular;
-    color: yellow;
-    font-size: 130px;
-    text-shadow: black 6px 6px ;
-}
-body {
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    height: 100vh;
-    background: linear-gradient(  
-        25deg,
-        rgb(104, 166, 81) 50%,
-        rgb(255, 111, 200) 100%
-        
-        );
-}
