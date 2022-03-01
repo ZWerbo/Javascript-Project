@@ -1,6 +1,6 @@
 import MovingDirection from "./MovingDirection.js";
-
-
+import Vomit from "./Vomit.js";
+// import bulletController from "./BulletController.js";
 export default class Pukeman {
     constructor(x, y, tileSize, velocity, tileMap) {
         this.x = x;
@@ -8,6 +8,8 @@ export default class Pukeman {
         this.tileSize = tileSize;
         this.velocity = velocity;
         this.tileMap = tileMap;
+
+    
 
         this.currentMovingDirection = null;
         this.requestedMovingDirection = null;
@@ -17,16 +19,19 @@ export default class Pukeman {
 
         this.pukemanRotation = this.Rotation.right;
 
-        this.hungrySound = new Audio('sounds/hungry.m4a');
+        // this.hungrySound = new Audio('sounds/hungry.m4a');
 
         this.vomitActive = false;
         this.vomitDotAboutToExpire = false;
 
         this.madeFirstMove = false;
 
+        this.shootPressed = false;
+
 
 
         document.addEventListener("keydown", this.keydown); 
+        document.addEventListener("keyup", this.keyup)
 
         this.loadPukemanImages();  //maybe make it private; 
 
@@ -46,6 +51,7 @@ export default class Pukeman {
             this.animate();
         }
         this.eatFood();
+        // this.shoot()
         // this.vomit();
 
         const size = this.tileSize/2;
@@ -65,6 +71,17 @@ export default class Pukeman {
         //     this.tileSize
         //   );
     }
+    // shoot() {
+    //     if(this.shootPressed) {
+    //         console.log("shoot");
+    //         const speed = 5; 
+    //         const delay = 3;
+    //         const damage = 1;
+    //         const bulletX = this.x + this.tileSize / 2;
+    //         const bulletY = this.y;
+    //         this.bulletController.shoot(bulletX,bulletY,speed, damage, delay)
+    //     }
+    // }
 
     loadPukemanImages() {
         const pukemanImage1 = new Image();
@@ -121,7 +138,25 @@ export default class Pukeman {
                 this.requestedMovingDirection = MovingDirection.right;
             
         }
+        //space 
+        if(event.keyCode === 32) {
+            this.shootPressed = true; 
+            // console.log('shoot')
+        }
     }
+
+    keyup=(event)=>{
+        if(event.keyCode === 32) {
+            this.shootPressed = false; 
+        }
+    }
+
+    shoot() {
+        if(this.shootPressed) {
+            new Vomit(this.x, this.y, 3, 1);
+        }
+    }
+
 
     //in Move the this.tileMap.didCollideWithEnvirontment breaks my guy 
      
