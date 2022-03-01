@@ -6,13 +6,13 @@ const tileSize = 32;
 const velocity = 2;
 // const velocityS = 3;
 
-const canvas = document.getElementById("gameCanvas")
+const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-const tileMap  = new TileMap(tileSize);
-const pukeman = tileMap.getPukeman(velocity);
-const enemies = tileMap.getEnemies(velocity);
-const gameOver = false; 
-const gameWin = false;
+let tileMap  = new TileMap(tileSize);
+let pukeman = tileMap.getPukeman(velocity);
+let enemies = tileMap.getEnemies(velocity);
+let gameOver = false; 
+let gameWin = false;
 
 const gameOverSound = new Audio('sounds/yourdead.m4a')
 

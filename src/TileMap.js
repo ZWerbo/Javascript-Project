@@ -1,7 +1,7 @@
 import Pukeman from "./Pukeman.js";
 import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
- class TileMap {
+ export default class TileMap {
     constructor(tileSize) {
         this.tileSize = tileSize;
         this.pukebackground = new Image();
@@ -9,6 +9,7 @@ import MovingDirection from "./MovingDirection.js";
 
         this.wall = new Image();
         this.wall.src = "images/pukeblock.png"
+        // console.log(this.wall);
 
         this.wall2 = new Image();
         this.wall2.src = "images/pukeblock2.png"
@@ -204,4 +205,4 @@ import MovingDirection from "./MovingDirection.js";
 
 }
 
-module.exports = TileMap;
+// module.exports = TileMap;

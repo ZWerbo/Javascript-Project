@@ -1,7 +1,7 @@
 import MovingDirection from "./MovingDirection.js";
 
 
-class Pukeman {
+export default class Pukeman {
     constructor(x, y, tileSize, velocity, tileMap) {
         this.x = x;
         this.y = y;
@@ -225,7 +225,7 @@ class Pukeman {
     
 }
 
-module.exports = Pukeman;
+// module.exports = Pukeman;
 
 
 

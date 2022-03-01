@@ -1,3 +1,37 @@
-#gameCanvas{box-shadow:10px 10px 20px #000}@font-face{font-family:"slabsregular";src:url("slabs-vmn07-webfont.woff2") format("woff2"),url("slabs-vmn07-webfont.woff") format("woff");font-weight:normal;font-style:normal}h1{text-align:center;font-family:slabsregular;font-size:140px;color:#ff0;text-shadow:6px 6px #000}h2{text-align:center;color:#ff0;font-size:40px;font-family:slabsregular;text-shadow:3px 4px #000}body{display:flex;text-align:center;justify-content:center;overflow:hidden;height:100vh;background:linear-gradient(25deg, #4b9031 50%, #ff6fc8 100%)}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+#gameCanvas {
+  box-shadow: 10px 10px 20px black;
+}
 
-/*# sourceMappingURL=main.css.map*/
+@font-face {
+  font-family: "slabsregular";
+  src: url("slabs-vmn07-webfont.woff2") format("woff2"), url("slabs-vmn07-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+h1 {
+  text-align: center;
+  font-family: slabsregular;
+  font-size: 140px;
+  color: yellow;
+  text-shadow: 6px 6px black;
+}
+
+h2 {
+  text-align: center;
+  color: yellow;
+  font-size: 40px;
+  font-family: slabsregular;
+  text-shadow: 3px 4px black;
+}
+
+body {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100vh;
+  background: linear-gradient(25deg, #4b9031 50%, #ff6fc8 100%);
+}
