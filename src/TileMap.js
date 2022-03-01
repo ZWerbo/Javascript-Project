@@ -1,7 +1,7 @@
 import Pukeman from "./Pukeman.js";
 import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
-export default class TileMap {
+ class TileMap {
     constructor(tileSize) {
         this.tileSize = tileSize;
         this.pukebackground = new Image();
@@ -62,8 +62,8 @@ export default class TileMap {
                 } 
             
 
-                ctx.strokeStyle = "black";
-                ctx.strokeRect(column * this.tileSize, row * this.tileSize, column * this.tileSize, this.tileSize, this.tileSize )
+                // ctx.strokeStyle = "black";
+                // ctx.strokeRect(column * this.tileSize, row * this.tileSize, column * this.tileSize, this.tileSize, this.tileSize )
             }
 
         }
@@ -201,4 +201,7 @@ export default class TileMap {
         return false; 
       }
 
+
 }
+
+module.exports = TileMap;

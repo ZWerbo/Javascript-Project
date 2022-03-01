@@ -20,8 +20,19 @@ h1{
     color: yellow;
     text-shadow: 6px 6px black;
 }
+
+h2 {
+    text-align: center;
+    color: yellow;
+    font-size: 40px;
+    font-family: slabsregular;
+    text-shadow: 3px 4px black;
+}
+
+
 body {
     display: flex;
+    text-align: center;
     justify-content: center;
     overflow: hidden;
     height: 100vh;

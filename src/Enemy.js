@@ -1,7 +1,7 @@
 import MovingDirection from "./MovingDirection.js";
 import Pukeman from "./Pukeman.js";
 
-export default class Enemy {
+class Enemy {
     constructor(x, y, tileSize, velocity, tileMap) {
         this.x = x;
         this.y = y;
@@ -99,3 +99,7 @@ export default class Enemy {
 
     }
 }
+
+
+
+module.exports = Enemy;
