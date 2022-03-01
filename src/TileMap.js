@@ -5,16 +5,16 @@ export default class TileMap {
     constructor(tileSize) {
         this.tileSize = tileSize;
         this.pukebackground = new Image();
-        this.pukebackground.src = '../images/pukerbackground.png'
+        this.pukebackground.src = 'images/pukerbackground.png'
 
         this.wall = new Image();
-        this.wall.src = "../images/pukeblock.png"
+        this.wall.src = "images/pukeblock.png"
 
         this.wall2 = new Image();
-        this.wall2.src = "../images/pukeblock2.png"
+        this.wall2.src = "images/pukeblock2.png"
 
         this.food = new Image();
-        this.food.src = "../images/food.png"
+        this.food.src = "images/food.png"
 
         this.vomitAnimationTimerDefault = 30;
         this.vomitAnimationTimer = this.vomitAnimationTimerDefault;

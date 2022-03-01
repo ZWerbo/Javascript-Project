@@ -1,0 +1,34 @@
+#gameCanvas{
+    box-shadow: 10px 10px 20px black;
+}
+
+@font-face {
+    font-family: 'slabsregular';
+    src: url('slabs-vmn07-webfont.woff2') format('woff2'),
+         url('slabs-vmn07-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+h1{
+    text-align: center;
+    font-family: slabsregular;
+    font-size: 140px;
+    color: yellow;
+    text-shadow: 6px 6px black;
+}
+body {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(  
+        25deg,
+        rgb(75, 144, 49) 50%,
+        rgb(255, 111, 200) 100%
+        
+        );
+}

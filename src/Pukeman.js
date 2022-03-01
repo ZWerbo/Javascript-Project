@@ -17,7 +17,7 @@ export default class Pukeman {
 
         this.pukemanRotation = this.Rotation.right;
 
-        this.hungrySound = new Audio('../sounds/hungry.m4a');
+        this.hungrySound = new Audio('sounds/hungry.m4a');
 
         this.vomitActive = false;
         this.vomitDotAboutToExpire = false;

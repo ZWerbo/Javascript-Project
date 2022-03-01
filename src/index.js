@@ -14,7 +14,7 @@ let enemies = tileMap.getEnemies(velocity);
 let gameOver = false; 
 let gameWin = false;
 
-const gameOverSound = new Audio('../sounds/yourdead.m4a')
+const gameOverSound = new Audio('sounds/yourdead.m4a')
 
 
 

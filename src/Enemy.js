@@ -89,10 +89,10 @@ export default class Enemy {
 
     loadImages() {
         this.firstEnemy = new Image();
-        this.firstEnemy.src = "../images/enemy1.png"
+        this.firstEnemy.src = "images/enemy1.png"
 
         this.secondEnemy = new Image();
-        this.secondEnemy.src = "../images/enemy2.png"
+        this.secondEnemy.src = "images/enemy2.png"
 
 
         this.image = this.firstEnemy;
