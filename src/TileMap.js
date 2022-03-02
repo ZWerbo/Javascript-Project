@@ -17,6 +17,9 @@ import MovingDirection from "./MovingDirection.js";
         this.food = new Image();
         this.food.src = "images/food.png"
 
+        this.vomit = new Image();
+        this.vomit.src = "images/vomit.png"
+
         this.vomitAnimationTimerDefault = 30;
         this.vomitAnimationTimer = this.vomitAnimationTimerDefault;
     }
@@ -33,15 +36,15 @@ import MovingDirection from "./MovingDirection.js";
         [1,0,7,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
         [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1],
         [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1],
+        [2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,7,0,0,0,0,0,0,1],
         [2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
-        [2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
-        [2,0,1,1,1,1,1,1,1,1,0,0,0,5,5,0,0,0,0,0,0,0,0,0,0,0,1],
-        [2,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [2,0,1,1,1,1,1,1,1,1,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [2,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,2,2,2,0,0,0,0,1],
         [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-        [2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
+        [2,1,1,1,0,7,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
         [2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
         [2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,1],
         [1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1],
     ];
 
@@ -54,17 +57,17 @@ import MovingDirection from "./MovingDirection.js";
       [2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
       [2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
       [2,0,1,1,1,1,1,1,1,1,0,0,0,5,5,0,0,0,0,0,0,0,0,0,0,0,1],
-      [2,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,1],
+      [2,0,0,0,0,0,0,0,0,0,0,0,0,4,8,0,0,0,0,0,0,0,0,0,0,0,1],
       [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
       [2,1,1,1,0,0,0,0,0,1,0,0,5,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
       [2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
       [2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-      [1,0,0,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,,0,0,0,1],
       [1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1],
   ];
     
 
-  
+
 
     draw(ctx) {
         for(let row = 0; row < this.map.length; row++) {
@@ -78,7 +81,9 @@ import MovingDirection from "./MovingDirection.js";
                     this.drawWall2(ctx, column, row, this.tileSize);
                 }else if(tile === 5) {
                     this.drawFood(ctx, column, row, this.tileSize)
-                } 
+                }else if(tile === 8) {
+                  this.drawVomit(ctx, column, row, this.tileSize)
+                }
             
 
                 // ctx.strokeStyle = "black";
@@ -87,6 +92,9 @@ import MovingDirection from "./MovingDirection.js";
 
         }
     };
+
+
+
 
     drawBackground(ctx, column, row, size) {
         ctx.drawImage(this.pukebackground,column * this.tileSize, row * this.tileSize, size, size )
@@ -104,6 +112,10 @@ import MovingDirection from "./MovingDirection.js";
 
     drawFood(ctx, column, row, size) {
         ctx.drawImage(this.food, column * this.tileSize, row * this.tileSize, size, size);
+    }
+
+    drawVomit(ctx, column, row, size) {
+      ctx.drawImage(this.vomit, column * this.tileSize, row * this.tileSize, size, size);
     }
 
     setCanvasSize(canvas) {
@@ -127,8 +139,6 @@ import MovingDirection from "./MovingDirection.js";
     didWin() {
       return (this.map.flat().filter((tile) => tile === 5).length === 0) 
     }
-
-   
     
 
     getEnemies(velocity) {
@@ -153,6 +163,8 @@ import MovingDirection from "./MovingDirection.js";
         }
         return enemies;
       }
+
+
 
    
     
@@ -199,6 +211,56 @@ import MovingDirection from "./MovingDirection.js";
         return false;
       }
 
+
+
+      didCollideWithEnvironmentEnemy(x, y, direction) {
+        if (direction == null) {
+          return;
+        }
+    
+        if (Number.isInteger(x / this.tileSize) && Number.isInteger(y / this.tileSize)
+        ) {
+          let column = 0;
+          let row = 0;
+          let nextColumn = 0;
+          let nextRow = 0;
+    
+          switch (direction) {
+            case MovingDirection.right:
+              nextColumn = x + this.tileSize;
+              column = nextColumn / this.tileSize;
+              row = y / this.tileSize;
+              break;
+            case MovingDirection.left:
+              nextColumn = x - this.tileSize;
+              column = nextColumn / this.tileSize;
+              row = y / this.tileSize;
+              break;
+            case MovingDirection.up:
+              nextRow = y - this.tileSize;
+              row = nextRow / this.tileSize;
+              column = x / this.tileSize;
+              break;
+            case MovingDirection.down:
+              nextRow = y + this.tileSize;
+              row = nextRow / this.tileSize;
+              column = x / this.tileSize;
+              break;
+          }
+          const tile = this.map[row][column];
+            if (tile === 1 || tile === 2 || tile === 8) {
+              return true;
+            }
+        }
+        return false;
+      }
+
+
+
+
+
+
+
       eatFood(x, y) {
         const row = y /this.tileSize;
         const column = x / this.tileSize;
@@ -210,6 +272,30 @@ import MovingDirection from "./MovingDirection.js";
         }
         return false; 
       }
+
+
+      vomitSquare(x, y) {
+        const row = y /this.tileSize;
+        const column = x / this.tileSize;
+        if(Number.isInteger(row) && Number.isInteger(column)) {
+            if(this.map[row][column] === 0) {
+              this.map[row][column] = 8;
+              // this.vomitMove(row, column)
+          }
+        }
+      }
+
+
+      // vomitMove(x, y) {
+      //   const row = y /this.tileSize;
+      //   const column = x / this.tileSize;
+      //   if(Number.isInteger(row) && Number.isInteger(column)) {
+      //       if(this.map[row][column] === 8) {
+      //         this.map[x][y + 3] = 8;
+      //     }
+      //   }
+      // }
+
 
 
 }

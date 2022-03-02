@@ -19,7 +19,7 @@ export default class Pukeman {
 
         this.pukemanRotation = this.Rotation.right;
 
-        // this.hungrySound = new Audio('sounds/hungry.m4a');
+        this.hungrySound = new Audio('sounds/hungry.m4a');
 
         this.vomitActive = false;
         this.vomitDotAboutToExpire = false;
@@ -28,13 +28,15 @@ export default class Pukeman {
 
         this.shootPressed = false;
 
+        this.eatenFood = false;
 
-
+        // const shoot = new Image();
+        // shoot.src = "images/enemy1.png"
         document.addEventListener("keydown", this.keydown); 
         document.addEventListener("keyup", this.keyup)
 
         this.loadPukemanImages();  //maybe make it private; 
-
+        
     } 
 
     Rotation = {
@@ -53,7 +55,7 @@ export default class Pukeman {
         this.eatFood();
         // this.shoot()
         // this.vomit();
-
+        // this.vomit.forEach(vom => {vom.draw})
         const size = this.tileSize/2;
 
         ctx.save();
@@ -140,7 +142,16 @@ export default class Pukeman {
         }
         //space 
         if(event.keyCode === 32) {
-            this.shootPressed = true; 
+            this.shootPressed = true;
+            // this.vomit();
+            if(this.eatenFood === true) {
+                this.vomit();
+                setTimeout((() => this.eatenFood = false), 5000)
+            }
+
+            // this.tileMap.vomitSquare(this.x, this.y)
+            // this.tileMap.updateTile(this.x, this.y)
+            // this.shoot(); 
             // console.log('shoot')
         }
     }
@@ -148,13 +159,15 @@ export default class Pukeman {
     keyup=(event)=>{
         if(event.keyCode === 32) {
             this.shootPressed = false; 
-        }
+         }
     }
 
     shoot() {
-        if(this.shootPressed) {
-            new Vomit(this.x, this.y, 3, 1);
-        }
+        // if(this.shootPressed === true) {
+            const bullet = new Vomit(this.x, this.y, 1, 1);
+
+            // bullet.draw();
+        // }
     }
 
 
@@ -228,33 +241,24 @@ export default class Pukeman {
     }
 
 
-    vomit() {
-        const speed = 5
-        const delay = 7
-        const damage = 1
-        const vomitX = this.x + this.tileSize / 2;
-        const vomitY = this.y + this.tileSize / 2;
-        this.vomitActive = true;
-        this.vomitDotAboutToExpire = false; 
 
-
-        // so a game plan for vomit would be to call it once food is eating
-        // it would have a timer. 
-        // it would render dots that go with the where he is facing.
-        // I would ideally like it if it was a never ending stream for the allotted time. like a second delay or something
-        //could build it out to use space though, then sync it to a time. 
-
-        //think about it with asteroids 
-
-    }
 
     eatFood() {
+        // let eatenFood = false; 
         if(this.tileMap.eatFood(this.x, this.y)) {
+            this.eatenFood = true;
             this.hungrySound.play();
+    
             // this.vomit();
             //need a vomit funciton here probably.
             //play sound
         }
+    }
+
+    vomit() {
+        // if(this.currentMovingDirection)
+       this.tileMap.vomitSquare(this.x , this.y);
+    //    this.hungrySound.play()
     }
 
     

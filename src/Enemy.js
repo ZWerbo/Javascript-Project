@@ -15,6 +15,7 @@ export default class Enemy {
 
         this.directionTimerDefault = this.random(10, 40);
         this.directionTimer = this.directionTimerDefault;
+
     }
 
     draw(ctx, pause, pukeman){
@@ -53,7 +54,7 @@ export default class Enemy {
         if(newMoveDirection != null && this.movingDirection != newMoveDirection) {
             if(Number.isInteger(this.x / this.tileSize) &&
               Number.isInteger(this.y / this.tileSize)) {
-                if(!this.tileMap.didCollideWithEnvironment(this.x, this.y, newMoveDirection)) {
+                if(!this.tileMap.didCollideWithEnvironmentEnemy(this.x, this.y, newMoveDirection)) {
                     this.movingDirection = newMoveDirection;
                 }
             }
@@ -64,7 +65,7 @@ export default class Enemy {
 
 
     move() {
-       if(!this.tileMap.didCollideWithEnvironment(this.x, this.y, this.movingDirection)) {
+       if(!this.tileMap.didCollideWithEnvironmentEnemy(this.x, this.y, this.movingDirection)) {
         switch(this.movingDirection) {
             case MovingDirection.up:
                 this.y -= this.velocity;

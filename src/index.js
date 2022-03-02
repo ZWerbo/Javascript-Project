@@ -2,6 +2,7 @@ import Pukeman from "./Pukeman.js";
 import TileMap from "./TileMap.js";
 // import Pukeman from "./Pukeman.js";
 // import bulletController from "./BulletController.js";
+import Vomit from "./Vomit.js";
 
 const tileSize = 32;
 const velocity = 2;
@@ -11,8 +12,10 @@ const ctx = canvas.getContext("2d");
 let tileMap  = new TileMap(tileSize);
 let pukeman = tileMap.getPukeman(velocity);
 let enemies = tileMap.getEnemies(velocity);
+// let vomit = [new Vomit(8,8,0)];
 let gameOver = false; 
 let gameWin = false;
+
 // let bulletController = new bulletController(canvas)
 
 const gameOverSound = new Audio('sounds/yourdead.m4a')
@@ -25,7 +28,7 @@ function gameLoop() {
     drawGameEnd();
     pukeman.draw(ctx, pausePuke());
     enemies.forEach((enemy) => enemy.draw(ctx, pause(), pukeman))
-    
+    // vomit.forEach(vom => {vom.draw})
     checkGameOver();
     checkGameWin();
     resetGameLoop(); 

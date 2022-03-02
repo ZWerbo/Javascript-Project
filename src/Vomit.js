@@ -17,21 +17,36 @@
 // }
 
 export default class Vomit {
-constructor(x, y, speed, damage) {
+constructor(x, y, velocity) {
     this.x = x;
     this.y = y;
-    this.speed = speed;
-    this.damage = damage;
+    this.velocity = velocity;
+    this.radius = 2
 
-    this.width = 5;
-    this.height = 15;
-    this.color = "red";
     // this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
   }
 
-  draw(ctx) {
-    ctx.fillStyle = this.color;
-    this.y -= this.speed;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+  draw() {
+      c.beginPath()
+      c.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+      c.fillStyle = 'brown'
+      c.fill()
+      c.closePath()
   }
+
+
+  update() {
+      this.draw()
+      this.x += this.velocity
+      this.y += this.velocity
+  }
+
+
+
+
+//   draw(ctx) {
+//     ctx.fillStyle = this.color;
+//     // this.y -= this.speed;
+//     ctx.fillRect(this.x, this.y, this.width, this.height);
+//   }
 }
