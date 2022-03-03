@@ -11,10 +11,13 @@ At its essence the game is adjacent to pacman in gameplay. The user has the abli
 
 **Developing**  
 --------------
-For the development of this game I used a canvas API to render a tile map that I customized with rather crude drawings for the game. The idea being to have a shlocky aesthetic(like an early 2000s web game). Most of it was created using Javascript and its logic with very few outside resources(no sprites or such) and then it had some CSS stylings.  
+For the development of this game I used a canvas API to render a tile map.I customized the tile map with rather crude drawings for the game. The idea being to have a shlocky aesthetic(like an early 2000s web game). I also used multiple images to animate the Pukeman character in the game. Most of it was created using Javascript and its logic with very few outside resources(no sprites or such) and then it had some CSS stylings.  
 
 
-
+**Features**  
+------------
+  
+The hardest aspect of this was getting the characters moving. Once I had a board rendered I had to figure out the logic of not allowing the pukeman to move through certain tiles. This is important for making the game harder and making sure he never runs off the canvas(which happened at the begginning). I had to write a move funciton for Pukeman(connected to keystrokes) that checked if the coordinate of the tile moving to existed. I had to write another function that would check if the requested move would collide with a tile I didn't want Pukeman to go through it. If it came back true we would not allow the movement! 
 
 **Code Snippets**  
 -----------------
