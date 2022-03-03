@@ -4,7 +4,7 @@
 **Game Description**   
 Pukeman Chug a lugs across the board in search of spoiled food(politely). Eat all the spoiled food on the board and you win. After eating spoiled food you gain the ability to vomit(in place). The enemies, which can kill you for no reason. Don't like vomit(ew) and walk around it. 
 
-Play here ("https://zwerbo.github.io/Javascript-Project/" PukeMan)
+Play here https://zwerbo.github.io/Javascript-Project/
 
 At its essence the game is adjacent in playing to pacman. The user has the ablity to use the arrows keys to navigate the game board. If you collide with the stick figures then you lose and the game resets. If you collide with food you eat it(taking it off the board) and you will know since a sound will play. Eat all the food and the game is over, you win, and the game resets. 
 
@@ -13,11 +13,12 @@ For the development of this game I used canvas API to render a tile map that I c
 
 
 
-**Code Snippets**
+**Code Snippets**  
 Here are some code snippets that demonstrate problem solving!
 
 
 This code within the move function checks to see if Pukeman collided with the environment then sets the animation to the first image!    
+  
 ``
     if(this.tileMap.didCollideWithEnvironment(this.x, this.y, this.currentMovingDirection)) 
         {
