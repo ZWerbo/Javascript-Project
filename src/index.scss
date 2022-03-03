@@ -16,9 +16,11 @@
 h1{
     text-align: center;
     font-family: slabsregular;
-    font-size: 140px;
+    font-size: 145px;
     color: yellow;
     text-shadow: 6px 6px black;
+    // background-image: url(https://media.istockphoto.com/photos/splash-of-vomit-on-road-picture-id836595424?k=20&m=836595424&s=170667a&w=0&h=FjVIzQQMk7VrH9heYIngcJjbofQV4b7Wax47g1fulwU=);
+    // background: violet;
 }
 
 h2 {
@@ -29,6 +31,25 @@ h2 {
     text-shadow: 3px 4px black;
 }
 
+.rules {
+    // text-align: center;
+    display: flex;
+    // padding-bottom: 100;
+    // background: rosybrown;
+    // margin: 20px;
+    width: 400px;
+    // height: 200px;
+    // vertical-align: middle;
+    margin-top: -3.5%;
+    // background: black;
+    // clear: both;
+    // background-image: url(https://media.istockphoto.com/photos/splash-of-vomit-on-road-picture-id836595424?k=20&m=836595424&s=170667a&w=0&h=FjVIzQQMk7VrH9heYIngcJjbofQV4b7Wax47g1fulwU=);
+}
+
+
+.goals {
+    // background: black;
+}
 
     body {
     display: flex;
@@ -42,6 +63,34 @@ h2 {
         rgb(255, 111, 200) 100%
         
         );
-}
+    }
+    #gameCanvas {
+        // border-width: 10%;
+        float: right;
+        margin-left: 20px;
+        // padding-left: 20px;
+        // vertical-align: middle;
 
+        // I wanna make this padding transparent. 
+
+
+        // display: flex;
+        // float: right;
+        // justify-content: left;
+        // justify-content: ;
+        // align-content: left;
+
+        // float: right;
+        // padding: 10%;
+    }
+
+    // .rightside {
+    //     float: left;
+    // }
+
+    // .left {
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: left;
+    // }
 

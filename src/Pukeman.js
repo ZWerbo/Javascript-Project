@@ -20,6 +20,7 @@ export default class Pukeman {
         this.pukemanRotation = this.Rotation.right;
 
         this.hungrySound = new Audio('sounds/hungry.m4a');
+        this.vomitSound = new Audio('sounds/vomit.m4a')
 
         this.vomitActive = false;
         this.vomitDotAboutToExpire = false;
@@ -97,11 +98,16 @@ export default class Pukeman {
         
         const pukemanImage4 = new Image();
         pukemanImage4.src = "images/pukeman0.png";
+        
+        const pukemanImage5 = new Image();
+        pukemanImage5.src = "images/pukeman4.png";
 
 
         this.pukemanImages = [
             pukemanImage1, 
             pukemanImage2, 
+            pukemanImage3,
+            pukemanImage5,
             pukemanImage3,
             pukemanImage4
         ];
@@ -258,7 +264,7 @@ export default class Pukeman {
     vomit() {
         // if(this.currentMovingDirection)
        this.tileMap.vomitSquare(this.x , this.y);
-    //    this.hungrySound.play()
+       this.vomitSound.play()
     }
 
     

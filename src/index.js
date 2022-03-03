@@ -15,6 +15,7 @@ let enemies = tileMap.getEnemies(velocity);
 // let vomit = [new Vomit(8,8,0)];
 let gameOver = false; 
 let gameWin = false;
+let firstBeat = false; 
 
 // let bulletController = new bulletController(canvas)
 
@@ -24,6 +25,7 @@ const gameWinSound = new Audio('sounds/winSound.m4a')
 
 
 function gameLoop() {
+    // tileMap.map = tileMap.map2
     tileMap.draw(ctx);
     drawGameEnd();
     pukeman.draw(ctx, pausePuke());
@@ -32,7 +34,7 @@ function gameLoop() {
     checkGameOver();
     checkGameWin();
     resetGameLoop(); 
-
+    
 }
 
 // Probably new, if game looped is triggered 
@@ -48,10 +50,11 @@ function checkGameWin() {
         gameWin = tileMap.didWin();
         if(gameWin) {
             gameWinSound.play();
-            tileMap.map = tileMap.map2
-            setTimeout(loadNext, 2500)
+            firstBeat = true;
+            // tileMap.map = tileMap.map2
+            setTimeout(loadNext, 10000)
 
-        }
+        } 
     }
 
 }
@@ -70,6 +73,7 @@ function drawGameEnd() {
         let text = " YOU WIN! but at what cost...." 
       
         ctx.font = "78px slabsregular"
+        // ctx.color = "yellow"
         ctx.fillText(text, 10, canvas.height / 2);
 
      
@@ -87,6 +91,7 @@ function checkGameOver(){
         gameOver = isGameOver();
         if(gameOver) {
             gameOverSound.play();
+            firstBeat = false; 
         }
     }
 }

@@ -14,7 +14,7 @@
 h1 {
   text-align: center;
   font-family: slabsregular;
-  font-size: 140px;
+  font-size: 145px;
   color: yellow;
   text-shadow: 6px 6px black;
 }
@@ -27,6 +27,12 @@ h2 {
   text-shadow: 3px 4px black;
 }
 
+.rules {
+  display: flex;
+  width: 400px;
+  margin-top: -3.5%;
+}
+
 body {
   display: flex;
   text-align: center;
@@ -34,4 +40,9 @@ body {
   overflow: hidden;
   height: 100vh;
   background: linear-gradient(25deg, #4b9031 50%, #ff6fc8 100%);
+}
+
+#gameCanvas {
+  float: right;
+  margin-left: 20px;
 }

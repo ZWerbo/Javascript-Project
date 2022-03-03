@@ -20,8 +20,11 @@ import MovingDirection from "./MovingDirection.js";
         this.vomit = new Image();
         this.vomit.src = "images/vomit.png"
 
+
         this.vomitAnimationTimerDefault = 30;
         this.vomitAnimationTimer = this.vomitAnimationTimerDefault;
+
+        this.vomitOnBoard = false; 
     }
 
 
@@ -31,7 +34,7 @@ import MovingDirection from "./MovingDirection.js";
     ///4 pukeman
     //7 enemy 
 
-    map = [
+    map2 = [
         [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1],
         [1,0,7,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
         [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1],
@@ -49,20 +52,20 @@ import MovingDirection from "./MovingDirection.js";
     ];
 
 
-    map2 = [
+    map = [
       [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1],
-      [1,0,7,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-      [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1],
-      [2,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1],
-      [2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
-      [2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
-      [2,0,1,1,1,1,1,1,1,1,0,0,0,5,5,0,0,0,0,0,0,0,0,0,0,0,1],
-      [2,0,0,0,0,0,0,0,0,0,0,0,0,4,8,0,0,0,0,0,0,0,0,0,0,0,1],
-      [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-      [2,1,1,1,0,0,0,0,0,1,0,0,5,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-      [2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-      [2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-      [1,0,0,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,,0,0,0,1],
+      [1,5,7,1,1,1,1,1,1,0,0,7,0,0,0,0,0,0,1,7,0,0,0,0,0,5,1],
+      [2,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,1,1,0,0,2,1,0,1,1,1],
+      [2,0,0,1,0,1,1,1,1,0,0,1,0,2,0,0,0,1,1,1,0,0,0,0,0,0,1],
+      [2,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,2,0,0,1],
+      [2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,2,0,0,1],
+      [2,0,1,1,1,1,1,1,1,1,0,0,0,5,2,0,0,0,0,0,1,0,0,2,7,0,1],
+      [2,7,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,1],
+      [2,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,1],
+      [2,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,1],
+      [2,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1],
+      [2,0,0,0,7,1,0,1,0,0,0,1,0,0,1,0,1,0,0,0,0,2,2,2,2,0,1],
+      [1,5,0,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,7,0,0,5,1],
       [1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1],
   ];
     
@@ -274,27 +277,66 @@ import MovingDirection from "./MovingDirection.js";
       }
 
 
-      vomitSquare(x, y) {
-        const row = y /this.tileSize;
-        const column = x / this.tileSize;
+      // async
+       vomitSquare(x, y) {
+        let row = y /this.tileSize;
+        let column = x / this.tileSize;
         if(Number.isInteger(row) && Number.isInteger(column)) {
             if(this.map[row][column] === 0) {
               this.map[row][column] = 8;
+              this.vomitOnBoard= true; 
               // this.vomitMove(row, column)
+            }
+            
           }
+          // // whil
+          // let i = 0;
+          // while(i < 4) {
+          // // for(let i = 0; i < 4; i++) {
+          //   console.log(i);
+          //   this.sleep(3000)
+          // }
+          // await setTimeout(this.vomitMove(row, column), 3000)
+          // setTimeout(column++, 3000)
+          // setTimeout(i++, 3000);
+          // i++
+          // setTimeout
+          // While ((x + i) < board.width) && (y + i) < board.height)
+          // this.vomitMove(row, column)
+          // this.vomitMove(row, column)
         }
-      }
 
-
-      // vomitMove(x, y) {
-      //   const row = y /this.tileSize;
-      //   const column = x / this.tileSize;
-      //   if(Number.isInteger(row) && Number.isInteger(column)) {
-      //       if(this.map[row][column] === 8) {
-      //         this.map[x][y + 3] = 8;
-      //     }
-      //   }
+      // sleep= (milliseconds) => {
+      //   return new Promise(resolve => setTimeout(resolve, milliseconds))
       // }
+
+      vomitMove(x, y) {
+          if(this.map[x][y] === 8 && this.vomitOnBoard === true) {
+            this.map[x][y + 1] = 8
+            this.map[x][y] = 0
+          }
+ 
+
+
+        // while(i < 3) {
+        //     if(this.map[x][y] === 8 && this.vomitOnBoard === true) {
+        //       // console.log('something2')
+        //       if(this.map[x][y + 1] === 0){
+        //         console.log(i)
+        //         this.map[x][y + 1] = 8;
+        //         this.map[x][y] = 0
+        //         i++;
+
+        //        } 
+        //        else {
+        //           break;
+        //       }
+        //     }
+
+
+        //   // }
+        // }
+      }
 
 
 
