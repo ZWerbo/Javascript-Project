@@ -1,57 +1,33 @@
-# Javascript-Project ~~~ PUKEMAN BB!!!!
-        the plan? 
-Background - 
-PukeMan is being chases for no apparent reason. Chug a lugging around the board our hero will come across spoiled food. Giving him the ability to vomit uncontrollably(shooting pellets out the mouth) that eviserate the unlucky foes in his way. PukeMan is always full. PukeMan is healthy and is not hurt by any of this. 
+--------- PukeMan ---------
 
-The basics of the game will be a board where the user moves the character around. he will simply try to stay alive. 
+**Game Description** 
+Pukeman Chug a lugs across the board in search of spoiled food(politely). Eat all the spoiled food on the board and you win. After eating spoiled food you gain the ability to vomit(in place). The enemies, which can kill you for no reason. Don't like vomit(ew) and walk around it. 
 
-Functionality and MVPs
-With Pukeman the user will be able to
--Start the game 
--Use the keys to move the character around the board. 
--Have the game end when you run into something. 
-The Project will also have the rules of the game(the goal)
+Play here ("https://zwerbo.github.io/Javascript-Project/" PukeMan)
+
+At its essence the game is adjacent in playing to pacman. The user has the ablity to use the arrows keys to navigate the game board. If you collide with the stick figures then you lose and the game resets. If you collide with food you eat it(taking it off the board) and you will know since a sound will play. Eat all the food and the game is over, you win, and the game resets. 
+
+**Developing** 
+For the development of this game I used canvas API to render a tile map that I customized with rather crude drawings for the game. The idea being to have a shlocky aesthetic(like an early 2000s web game). Most of it was created using Javascript and its logic with very few outside resources(no sprites or such) and then it had some CSS stylings. 
 
 
-Wireframes 
-~Upon opening the game we will have a title, the game board in the middle.
-    -the rules of the game will be on the left side(they will be simple)
 
-                        title 
-                   ~~description~~
-        --------------------------------------
-        |                                     | 
-        |                                     |
-        |            START BUTTON             |
-        |                                     |
-        |_____________________________________|
+**Code Snippets**
+Here are some code snippets that demonstrate problem solving!
 
 
--maybe as a bonus we will be able to do a coupla extra cool things. change the colors or something. 
--The page is going to be wild. 
+This code within the move function checks to see if Pukeman collided with the environment then sets the animation to the first image!
+``
+    if(this.tileMap.didCollideWithEnvironment(this.x, this.y, this.currentMovingDirection)) 
+        {
+            this.pukemanAnimationTimer = null;
+            this.pukemanImageIndex = 0;
+            return;
+        }
+``
+I thought this was a nice flourish and attention to detail. 
 
 
-Technologies, Libraries, APIs
--For this project ill probably use....
-    -The Canvas API to make a board
-    -The Webpack and babel bundle. 
-
-
-Implementation Timeline 
-~Friday Afternoon // Weekend~
-  during this time I want to get the game board done, get the character moving on the board, and atleast get the enemies implemented also. 
-  if i could also figure out how to render the food get it eaten that would be a cherry on top.
-
-~Monday 
-    hopefully I can figure out how to get PukeMan to shoot pellets on the board. 
-
-~Tuesday 
-    figure out how to implement some respawns for the enemy or maybe make multiple levels.
-
-~Wednesday 
-    determine how far I have gotten on the other parts and see what needs to be done. 
-    Mess more with styling and adding flourishes I think would be cool(that hopefully don't break anything)
-
-
-Bonus features? 
-    It'll just get better and better. 
+**Future Features**
+In the future I would like to add vomit movement(which I partly achieved, I just could not figure out how to slow down a loop). 
+Also would like to load new levels, giving the user the ability to play through the game farther. This is a bit trickier due to how the game loads, but I will figure it out. 

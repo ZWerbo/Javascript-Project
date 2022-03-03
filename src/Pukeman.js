@@ -21,6 +21,10 @@ export default class Pukeman {
 
         this.hungrySound = new Audio('sounds/hungry.m4a');
         this.vomitSound = new Audio('sounds/vomit.m4a')
+        this.upSound = new Audio('sounds/mm.m4a')
+        this.downSound = new Audio('sounds/ohno.m4a')
+        this.rightSound = new Audio('sounds/sorry.m4a')
+        this.leftSound = new Audio('sounds/excuseme.m4a')
 
         this.vomitActive = false;
         this.vomitDotAboutToExpire = false;
@@ -123,29 +127,31 @@ export default class Pukeman {
             if(this.currentMovingDirection === MovingDirection.down) 
                 this.currentMovingDirection = MovingDirection.up;
                 this.requestedMovingDirection = MovingDirection.up;
-            
-        }
-        //down
-        if(event.keyCode == 40){
-            if(this.currentMovingDirection === MovingDirection.up) 
+                this.upSound.play();
+            }
+            //down
+            if(event.keyCode == 40){
+                if(this.currentMovingDirection === MovingDirection.up) 
                 this.currentMovingDirection = MovingDirection.down;
                 this.requestedMovingDirection = MovingDirection.down;
-            
-        }
-        //left
-        if(event.keyCode == 37){
-            if(this.currentMovingDirection === MovingDirection.right) 
+                this.downSound.play()
+            }
+            //left
+            if(event.keyCode == 37){
+                if(this.currentMovingDirection === MovingDirection.right) 
                 this.currentMovingDirection = MovingDirection.left;
                 this.requestedMovingDirection = MovingDirection.left;
-            
-        }
-        //right 
-        if(event.keyCode == 39){
-            if(this.currentMovingDirection === MovingDirection.left) 
+                this.leftSound.play()
+            }
+            //right 
+            if(event.keyCode == 39){
+                if(this.currentMovingDirection === MovingDirection.left) 
                 this.currentMovingDirection = MovingDirection.right;
                 this.requestedMovingDirection = MovingDirection.right;
-            
-        }
+                this.rightSound.play()
+                
+                
+            }
         //space 
         if(event.keyCode === 32) {
             this.shootPressed = true;
@@ -254,6 +260,7 @@ export default class Pukeman {
         if(this.tileMap.eatFood(this.x, this.y)) {
             this.eatenFood = true;
             this.hungrySound.play();
+            // this.upSound.play();
     
             // this.vomit();
             //need a vomit funciton here probably.

@@ -25,7 +25,10 @@ import MovingDirection from "./MovingDirection.js";
         this.vomitAnimationTimer = this.vomitAnimationTimerDefault;
 
         this.vomitOnBoard = false; 
+
+        this.win1 = false; 
     }
+
 
 
     //1-2 are walls 
@@ -284,7 +287,8 @@ import MovingDirection from "./MovingDirection.js";
         if(Number.isInteger(row) && Number.isInteger(column)) {
             if(this.map[row][column] === 0) {
               this.map[row][column] = 8;
-              this.vomitOnBoard= true; 
+              this.vomitOnBoard= true;
+
               // this.vomitMove(row, column)
             }
             
@@ -312,8 +316,9 @@ import MovingDirection from "./MovingDirection.js";
 
       vomitMove(x, y) {
           if(this.map[x][y] === 8 && this.vomitOnBoard === true) {
-            this.map[x][y + 1] = 8
-            this.map[x][y] = 0
+              this.map[x][y + 1] = 8
+              this.map[x][y] = 0
+          
           }
  
 

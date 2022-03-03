@@ -25,17 +25,20 @@ const gameWinSound = new Audio('sounds/winSound.m4a')
 
 
 function gameLoop() {
-    // tileMap.map = tileMap.map2
+    if(tileMap.win1 === true) {
+        tileMap.map = tileMap.map2
+    }
     tileMap.draw(ctx);
-    drawGameEnd();
     pukeman.draw(ctx, pausePuke());
     enemies.forEach((enemy) => enemy.draw(ctx, pause(), pukeman))
     // vomit.forEach(vom => {vom.draw})
     checkGameOver();
     checkGameWin();
+    drawGameEnd();
     resetGameLoop(); 
     
 }
+
 
 // Probably new, if game looped is triggered 
 function resetGameLoop() {
@@ -51,7 +54,9 @@ function checkGameWin() {
         if(gameWin) {
             gameWinSound.play();
             firstBeat = true;
+            tileMap = true;
             // tileMap.map = tileMap.map2
+         
             setTimeout(loadNext, 10000)
 
         } 
@@ -64,6 +69,7 @@ function loadNext() {
     // tileMap.map = tileMap.map2
     // gameLoop();
     location.reload()
+  
 }
 
 //my idea would be if you win then we make the map equal to the next map and reload the page. 
@@ -73,6 +79,7 @@ function drawGameEnd() {
         let text = " YOU WIN! but at what cost...." 
       
         ctx.font = "78px slabsregular"
+        ctx.fillStyle = "yellow"
         // ctx.color = "yellow"
         ctx.fillText(text, 10, canvas.height / 2);
 
@@ -122,3 +129,9 @@ tileMap.setCanvasSize(canvas);
 
 
 setInterval(gameLoop, 1000 / 75)
+
+
+
+
+
+
