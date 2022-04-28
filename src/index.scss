@@ -12,7 +12,9 @@
 }
 
 
-
+.full-page {
+    display: flex;
+}
 h1{
     text-align: center;
     font-family: slabsregular;
@@ -24,23 +26,33 @@ h1{
 }
 
 h2 {
+    display: flex;
     text-align: center;
     color: yellow;
     font-size: 40px;
     font-family: slabsregular;
     text-shadow: 3px 4px black;
+    margin-top: -84px;
 }
 
 .rules {
     // text-align: center;
+
     display: flex;
+
     // padding-bottom: 100;
     // background: rosybrown;
     // margin: 20px;
-    width: 400px;
+
+    // width: 400px;
+
     // height: 200px;
     // vertical-align: middle;
-    margin-top: -3.5%;
+
+    // margin-top: -3.5%;
+
+
+
     // background: black;
     // clear: both;
     // background-image: url(https://media.istockphoto.com/photos/splash-of-vomit-on-road-picture-id836595424?k=20&m=836595424&s=170667a&w=0&h=FjVIzQQMk7VrH9heYIngcJjbofQV4b7Wax47g1fulwU=);
@@ -48,7 +60,7 @@ h2 {
 
 
 .goals {
-    // background: black;
+    margin-top: 40px;
 }
 
     body {
