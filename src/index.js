@@ -89,7 +89,8 @@ function drawGameEnd() {
 }
 
 function restart() {
-    location.reload()
+    location.reload(gameLoop())
+    console.log('here?')
 }
 
 function checkGameOver(){
