@@ -2,10 +2,11 @@ import Pukeman from "./Pukeman.js";
 import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
  export default class TileMap {
-    constructor(tileSize) {
+    constructor(tileSize, mapNum) {
         this.tileSize = tileSize;
         this.pukebackground = new Image();
         this.pukebackground.src = 'images/pukerbackground.png'
+        this.mapNum = mapNum
 
         this.wall = new Image();
         this.wall.src = "images/pukeblock.png"
@@ -31,13 +32,9 @@ import MovingDirection from "./MovingDirection.js";
 
 
 
-    //1-2 are walls 
-    //5 is food 
-    // 0 is background
-    ///4 pukeman
-    //7 enemy 
+    
 
-    map2 = [
+    map1 = [
         [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1],
         [1,0,7,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
         [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1],
@@ -50,12 +47,12 @@ import MovingDirection from "./MovingDirection.js";
         [2,1,1,1,0,7,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
         [2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
         [2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,1],
+        [1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
         [1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1],
     ];
 
 
-    map = [
+    map2 = [
       [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1],
       [1,5,7,1,1,1,1,1,1,0,0,7,0,0,0,0,0,0,1,7,0,0,0,0,0,5,1],
       [2,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,1,1,0,0,2,1,0,1,1,1],
@@ -72,13 +69,14 @@ import MovingDirection from "./MovingDirection.js";
       [1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1],
   ];
     
+  maps = [this.map1, this.map2]
 
 
 
     draw(ctx) {
-        for(let row = 0; row < this.map.length; row++) {
-            for(let column=0; column < this.map[row].length; column++ ) {
-                let tile = this.map[row][column];
+        for(let row = 0; row < this.maps[this.mapNum].length; row++) {
+            for(let column=0; column < this.maps[this.mapNum][row].length; column++ ) {
+                let tile = this.maps[this.mapNum][row][column];
                 if(tile===1) {
                     this.drawWall(ctx, column, row, this.tileSize)
                 } else if(tile === 0) {
@@ -125,17 +123,17 @@ import MovingDirection from "./MovingDirection.js";
     }
 
     setCanvasSize(canvas) {
-        canvas.width = this.map[0].length * this.tileSize;
-        canvas.height = this.map.length * this.tileSize;
+        canvas.width = this.maps[this.mapNum][0].length * this.tileSize;
+        canvas.height = this.maps[this.mapNum].length * this.tileSize;
     };
 
 
     getPukeman(velocity){
-        for(let row = 0; row < this.map.length; row++) {
-            for(let col = 0; col < this.map[row].length; col++) {
-                let tile = this.map[row][col];
+        for(let row = 0; row < this.maps[this.mapNum].length; row++) {
+            for(let col = 0; col < this.maps[this.mapNum][row].length; col++) {
+                let tile = this.maps[this.mapNum][row][col];
                 if(tile === 4) {
-                    this.map[row][col] = 0;
+                    this.maps[this.mapNum][row][col] = 0;
                     return new Pukeman(col * this.tileSize, row * this.tileSize, this.tileSize, velocity, this);
                 }
             }
@@ -143,18 +141,18 @@ import MovingDirection from "./MovingDirection.js";
     }
 
     didWin() {
-      return (this.map.flat().filter((tile) => tile === 5).length === 0) 
+      return (this.maps[this.mapNum].flat().filter((tile) => tile === 5).length === 0)
     }
     
 
     getEnemies(velocity) {
         const enemies = [];
     
-        for (let row = 0; row < this.map.length; row++) {
-          for (let column = 0; column < this.map[row].length; column++) {
-            const tile = this.map[row][column];
+        for (let row = 0; row < this.maps[this.mapNum].length; row++) {
+          for (let column = 0; column < this.maps[this.mapNum][row].length; column++) {
+            const tile = this.maps[this.mapNum][row][column];
             if (tile === 7) {
-              this.map[row][column] = 0;
+              this.maps[this.mapNum][row][column] = 0;
               enemies.push(
                 new Enemy(
                   column * this.tileSize,
@@ -209,7 +207,7 @@ import MovingDirection from "./MovingDirection.js";
               column = x / this.tileSize;
               break;
           }
-          const tile = this.map[row][column];
+          const tile = this.maps[this.mapNum][row][column];
           if (tile === 1 || tile === 2) {
             return true;
           }
@@ -253,7 +251,7 @@ import MovingDirection from "./MovingDirection.js";
               column = x / this.tileSize;
               break;
           }
-          const tile = this.map[row][column];
+          const tile = this.maps[this.mapNum][row][column];
             if (tile === 1 || tile === 2 || tile === 8) {
               return true;
             }
@@ -271,8 +269,8 @@ import MovingDirection from "./MovingDirection.js";
         const row = y /this.tileSize;
         const column = x / this.tileSize;
         if(Number.isInteger(row) && Number.isInteger(column)) {
-            if(this.map[row][column] === 5) {
-                this.map[row][column] = 0;
+            if(this.maps[this.mapNum][row][column] === 5) {
+                this.maps[this.mapNum][row][column] = 0;
                 return true;
             }
         }
@@ -282,17 +280,21 @@ import MovingDirection from "./MovingDirection.js";
 
       // async
        vomitSquare(x, y) {
-        let row = y /this.tileSize;
-        let column = x / this.tileSize;
+        //  debugger
+        let row = Math.floor(y /this.tileSize);
+        let column = Math.floor(x / this.tileSize);
         if(Number.isInteger(row) && Number.isInteger(column)) {
-            if(this.map[row][column] === 0) {
-              this.map[row][column] = 8;
+            if(this.maps[this.mapNum][row][column] === 0) {
+              this.maps[this.mapNum][row][column] = 8;
               this.vomitOnBoard= true;
 
               // this.vomitMove(row, column)
             }
             
           }
+
+
+
           // // whil
           // let i = 0;
           // while(i < 4) {
@@ -315,21 +317,21 @@ import MovingDirection from "./MovingDirection.js";
       // }
 
       vomitMove(x, y) {
-          if(this.map[x][y] === 8 && this.vomitOnBoard === true) {
-              this.map[x][y + 1] = 8
-              this.map[x][y] = 0
+          if(this.maps[this.mapNum][x][y] === 8 && this.vomitOnBoard === true) {
+              this.maps[this.mapNum][x][y + 1] = 8
+              this.maps[this.mapNum][x][y] = 0
           
           }
  
 
 
         // while(i < 3) {
-        //     if(this.map[x][y] === 8 && this.vomitOnBoard === true) {
+        //     if(this.maps[this.mapNum][x][y] === 8 && this.vomitOnBoard === true) {
         //       // console.log('something2')
-        //       if(this.map[x][y + 1] === 0){
+        //       if(this.maps[this.mapNum][x][y + 1] === 0){
         //         console.log(i)
-        //         this.map[x][y + 1] = 8;
-        //         this.map[x][y] = 0
+        //         this.maps[this.mapNum][x][y + 1] = 8;
+        //         this.maps[this.mapNum][x][y] = 0
         //         i++;
 
         //        } 

@@ -9,15 +9,19 @@ const velocity = 2;
 // const velocityS = 3;
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-let tileMap  = new TileMap(tileSize);
+let mapNum = 1;
+let tileMap  = new TileMap(tileSize, mapNum);
 let pukeman = tileMap.getPukeman(velocity);
 let enemies = tileMap.getEnemies(velocity);
 // let vomit = [new Vomit(8,8,0)];
 let gameOver = false; 
 let gameWin = false;
 let firstBeat = false; 
+let win1 = false
+
 
 // let bulletController = new bulletController(canvas)
+
 
 const gameOverSound = new Audio('sounds/yourdead.m4a')
 const gameWinSound = new Audio('sounds/winSound.m4a')
@@ -25,18 +29,30 @@ const gameWinSound = new Audio('sounds/winSound.m4a')
 
 
 function gameLoop() {
-    if(tileMap.win1 === true) {
-        tileMap.map = tileMap.map2
+    if(win1 = true) {
+        gameLoop = gameLoop2
+        restart
     }
     tileMap.draw(ctx);
     pukeman.draw(ctx, pausePuke());
     enemies.forEach((enemy) => enemy.draw(ctx, pause(), pukeman))
-    // vomit.forEach(vom => {vom.draw})
     checkGameOver();
     checkGameWin();
     drawGameEnd();
     resetGameLoop(); 
     
+}
+
+function gameLoop2() {
+    mapNum = 1
+    tileMap = new TileMap(tileSize, mapNum)
+    tileMap.draw(ctx);
+    pukeman.draw(ctx, pausePuke());
+    enemies.forEach((enemy) => enemy.draw(ctx, pause(), pukeman))
+    checkGameOver();
+    checkGameWin();
+    drawGameEnd();
+    resetGameLoop(); 
 }
 
 
@@ -52,13 +68,16 @@ function checkGameWin() {
     if(!gameWin) {
         gameWin = tileMap.didWin();
         if(gameWin) {
-            gameWinSound.play();
+            // gameWinSound.play();
+
             firstBeat = true;
             tileMap = true;
-            // tileMap.map = tileMap.map2
-         
-            setTimeout(loadNext, 10000)
 
+            // tileMap.map = tileMap.map2
+            
+            win1 = true
+            // setTimeout(loadNext, 10000)
+            setTimeout(loadNext, 1000)
         } 
     }
 
@@ -66,10 +85,7 @@ function checkGameWin() {
 
 
 function loadNext() {
-    // tileMap.map = tileMap.map2
-    // gameLoop();
-    location.reload()
-  
+    location.replace(gameLoop2())
 }
 
 //my idea would be if you win then we make the map equal to the next map and reload the page. 
@@ -84,13 +100,12 @@ function drawGameEnd() {
         ctx.fillText(text, 10, canvas.height / 2);
 
      
-        
     }
 }
 
 function restart() {
     location.reload(gameLoop())
-    console.log('here?')
+    // console.log('here?')
 }
 
 function checkGameOver(){
@@ -116,6 +131,8 @@ function pause(){
     // }
     // return gameOver;
 }
+
+
 function pausePuke() {
     return gameOver || gameWin;
 }
@@ -130,6 +147,7 @@ tileMap.setCanvasSize(canvas);
 
 
 setInterval(gameLoop, 1000 / 75)
+// setInterval(gameLoop2, 1000 / 75)
 
 
 

@@ -5,6 +5,7 @@ export default class Pukeman {
     constructor(x, y, tileSize, velocity, tileMap) {
         this.x = x;
         this.y = y;
+        this.prevPos = [x, y]
         this.tileSize = tileSize;
         this.velocity = velocity;
         this.tileMap = tileMap;
@@ -158,7 +159,7 @@ export default class Pukeman {
             // this.vomit();
             if(this.eatenFood === true) {
                 this.vomit();
-                setTimeout((() => this.eatenFood = false), 5000)
+                setTimeout((() => this.eatenFood = false), 1500)
             }
 
             // this.tileMap.vomitSquare(this.x, this.y)
@@ -171,6 +172,7 @@ export default class Pukeman {
     keyup=(event)=>{
         if(event.keyCode === 32) {
             this.shootPressed = false; 
+            // this.vomit();
          }
     }
 
@@ -234,6 +236,8 @@ export default class Pukeman {
                 this.madeFirstMove = true;
                 break
         }
+        // console.log(this.prevPos)
+        this.prevPos = [this.x, this.y]
     }
 
     
@@ -270,7 +274,7 @@ export default class Pukeman {
 
     vomit() {
         // if(this.currentMovingDirection)
-       this.tileMap.vomitSquare(this.x , this.y);
+       this.tileMap.vomitSquare(this.prevPos[0] , this.prevPos[1]);
        this.vomitSound.play()
     }
 
