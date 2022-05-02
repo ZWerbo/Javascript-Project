@@ -1,6 +1,9 @@
 --------- **PukeMan** ---------
 ===============================
 
+<img width="1351" alt="puke" src="https://user-images.githubusercontent.com/87534348/166344031-4edd8a1d-f3dd-4ce8-925f-aa65d57dd43b.png">
+
+
 **Game Description**  
 --------------------- 
 Pukeman Chug a lugs across the board in search of spoiled food(politely). Eat all the spoiled food on the board and you win. After eating spoiled food you gain the ability to vomit(in place). The enemies(which can kill you for no reason) don't like vomit(ew) and walk around it. Use this to your advantage!
