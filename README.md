@@ -17,6 +17,9 @@ At its essence the game is adjacent to pacman in gameplay. The user has the abli
 For the development of this game I used a canvas API to render a tile map.I customized the tile map with rather crude drawings for the game. The idea being to have a shlocky aesthetic(like an early 2000s web game). I also used multiple images to animate the Pukeman character in the game. Most of it was created using Javascript and its logic with very few outside resources(no sprites or such) and then it had some CSS stylings.  
 
 
+![pukeman](https://user-images.githubusercontent.com/87534348/166344549-a2c4b1d5-d77b-4948-a01b-5fcf3785c366.gif)
+
+
 **Features**  
 ------------
   
