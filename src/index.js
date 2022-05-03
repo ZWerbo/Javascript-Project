@@ -68,7 +68,7 @@ function checkGameWin() {
     if(!gameWin) {
         gameWin = tileMap.didWin();
         if(gameWin) {
-            // gameWinSound.play();
+            gameWinSound.play();
 
             firstBeat = true;
             tileMap = true;
@@ -76,8 +76,8 @@ function checkGameWin() {
             // tileMap.map = tileMap.map2
             
             win1 = true
-            // setTimeout(loadNext, 10000)
-            setTimeout(loadNext, 1000)
+            setTimeout(restart, 10000)
+            // setTimeout(loadNext, 1000)
         } 
     }
 
@@ -85,7 +85,7 @@ function checkGameWin() {
 
 
 function loadNext() {
-    location.replace(gameLoop2())
+    location.replace()
 }
 
 //my idea would be if you win then we make the map equal to the next map and reload the page. 
