@@ -13,13 +13,24 @@ let mapNum = 1;
 let tileMap  = new TileMap(tileSize, mapNum);
 let pukeman = tileMap.getPukeman(velocity);
 let enemies = tileMap.getEnemies(velocity);
-// let vomit = [new Vomit(8,8,0)];
+
 let gameOver = false; 
 let gameWin = false;
 let firstBeat = false; 
 let win1 = false
 
 
+function setStuff() {
+mapNum = 1;
+tileMap  = new TileMap(tileSize, mapNum);
+pukeman = tileMap.getPukeman(velocity);
+enemies = tileMap.getEnemies(velocity);
+
+gameOver = false; 
+gameWin = false;
+firstBeat = false; 
+win1 = false
+}
 // let bulletController = new bulletController(canvas)
 
 
@@ -33,6 +44,8 @@ function gameLoop() {
     //     gameLoop = gameLoop2
     //     restart
     // }
+
+    setStuff
     tileMap.draw(ctx);
     pukeman.draw(ctx, pausePuke());
     enemies.forEach((enemy) => enemy.draw(ctx, pause(), pukeman))
@@ -61,6 +74,7 @@ function resetGameLoop() {
     if(gameOver === true) {
         setTimeout(restart, 2700)
         // location.reload()
+        // restart()
     }
 }
 
@@ -104,8 +118,8 @@ function drawGameEnd() {
 }
 
 function restart() {
-    window.location.reload(gameLoop())
-    // console.log('here?')
+
+setStuff()
 }
 
 function checkGameOver(){
@@ -113,6 +127,8 @@ function checkGameOver(){
     if(!gameOver) {
         gameOver = isGameOver();
         if(gameOver) {
+
+
             gameOverSound.play();
             firstBeat = false; 
         }
@@ -147,6 +163,8 @@ tileMap.setCanvasSize(canvas);
 
 
 setInterval(gameLoop, 1000 / 75)
+
+
 // setInterval(gameLoop2, 1000 / 75)
 
 
