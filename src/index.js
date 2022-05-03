@@ -29,10 +29,10 @@ const gameWinSound = new Audio('sounds/winSound.m4a')
 
 
 function gameLoop() {
-    if(win1 = true) {
-        gameLoop = gameLoop2
-        restart
-    }
+    // if(win1 = true) {
+    //     gameLoop = gameLoop2
+    //     restart
+    // }
     tileMap.draw(ctx);
     pukeman.draw(ctx, pausePuke());
     enemies.forEach((enemy) => enemy.draw(ctx, pause(), pukeman))
@@ -43,17 +43,17 @@ function gameLoop() {
     
 }
 
-function gameLoop2() {
-    mapNum = 1
-    tileMap = new TileMap(tileSize, mapNum)
-    tileMap.draw(ctx);
-    pukeman.draw(ctx, pausePuke());
-    enemies.forEach((enemy) => enemy.draw(ctx, pause(), pukeman))
-    checkGameOver();
-    checkGameWin();
-    drawGameEnd();
-    resetGameLoop(); 
-}
+// function gameLoop2() {
+//     mapNum = 1
+//     tileMap = new TileMap(tileSize, mapNum)
+//     tileMap.draw(ctx);
+//     pukeman.draw(ctx, pausePuke());
+//     enemies.forEach((enemy) => enemy.draw(ctx, pause(), pukeman))
+//     checkGameOver();
+//     checkGameWin();
+//     drawGameEnd();
+//     resetGameLoop(); 
+// }
 
 
 // Probably new, if game looped is triggered 
@@ -104,7 +104,7 @@ function drawGameEnd() {
 }
 
 function restart() {
-    location.reload(gameLoop())
+    window.location.reload(gameLoop())
     // console.log('here?')
 }
 
